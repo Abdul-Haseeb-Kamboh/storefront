@@ -37,7 +37,8 @@
     "viewAllCategory": "View all {category}",
     "openSearch": "Open search",
     "closeSearch": "Close search",
-    "myAccount": "My Account"
+    "myAccount": "My Account",
+    "wishlist": "Wishlist"
   },
   "footer": {
     "description": "Open-source ecommerce powered by Spree REST API, TypeScript SDK, and Next.js. Self-host it. Own your data. Zero platform fees.",
@@ -53,7 +54,8 @@
     "cart": "Cart",
     "policies": "Policies",
     "poweredBy": "Powered by",
-    "copyright": "© {year} {storeName}. Powered by Spree Commerce."
+    "copyright": "© {year} {storeName}. Powered by Spree Commerce.",
+    "wishlist": "Wishlist"
   },
   "home": {
     "welcome": "{storeName} Storefront",
@@ -311,7 +313,9 @@
     "showPassword": "Show password",
     "hidePassword": "Hide password",
     "forgotPassword": "Forgot password?",
-    "policyConsentRequired": "You must agree to the store policies to create an account"
+    "policyConsentRequired": "You must agree to the store policies to create an account",
+    "wishlist": "Wishlist",
+    "wishlistDescription": "Manage your saved products"
   },
   "register": {
     "createAccount": "Create Account",
@@ -524,5 +528,25 @@
     "shipping": "Shipping",
     "finalizingPayment": "Finalizing your payment...",
     "or": "or"
+  },
+  "wishlist": {
+    "myWishlist": "My Wishlist",
+    "addToWishlist": "Add to wishlist",
+    "addedToWishlist": "Added to wishlist",
+    "removeFromWishlist": "Remove from wishlist",
+    "emptyTitle": "Your wishlist is empty",
+    "emptyDescription": "Save products you love and find them here later.",
+    "signInRequired": "Sign in to view and manage your wishlist.",
+    "signInToView": "Sign in to view wishlist",
+    "failedToLoad": "Could not load your wishlist. Please try again.",
+    "failedToAdd": "Could not add this item to your wishlist. Please try again.",
+    "failedToRemove": "Could not remove this item from your wishlist. Please try again.",
+    "addToCart": "Add to cart",
+    "addingToCart": "Adding...",
+    "remove": "Remove",
+    "quantity": "Qty: {quantity}",
+    "refresh": "Refresh",
+    "outlineHeart": "♡",
+    "filledHeart": "♥"
   }
 }

@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { memo } from "react";
 import { ProductImage } from "@/components/ui/product-image";
+import { WishlistButton } from "@/components/wishlist/WishlistButton";
 import { trackSelectItem } from "@/lib/analytics/gtm";
 
 interface ProductCardProps {
@@ -60,52 +61,62 @@ export const ProductCard = memo(function ProductCard({
   };
 
   return (
-    <Link
-      href={`${basePath}/products/${product.slug}${categoryId ? `?category_id=${categoryId}` : ""}`}
-      className="group block"
-      onClick={handleClick}
-    >
-      {/* Image */}
-      <div className="relative aspect-square bg-gray-100 rounded-md overflow-hidden">
-        <ProductImage
-          src={imageUrl}
-          alt={product.name}
-          fill
-          className="object-cover group-hover:scale-105 transition-transform duration-300"
-          sizes="(max-width: 640px) 50vw, (max-width: 1024px) 50vw, 300px"
-          iconClassName="w-16 h-16"
-          fetchPriority={fetchPriority}
-        />
-        {onSale && (
-          <span className="absolute top-2 left-2 bg-red-500 text-white text-xs font-medium px-2 py-1 rounded">
-            {t("sale")}
-          </span>
-        )}
-      </div>
-
-      {/* Content */}
-      <div className="p-4">
-        <h3 className="text-sm font-medium text-gray-900 group-hover:text-primary transition-colors line-clamp-2">
-          {product.name}
-        </h3>
-
-        <div className="mt-2 flex items-center gap-2">
-          {displayPrice && (
-            <span className="text-lg font-semibold text-gray-900">
-              {displayPrice}
-            </span>
-          )}
-          {onSale && strikethroughPrice && (
-            <span className="text-sm text-gray-500 line-through">
-              {strikethroughPrice}
+    <div className="group relative block">
+      <Link
+        href={`${basePath}/products/${product.slug}${categoryId ? `?category_id=${categoryId}` : ""}`}
+        onClick={handleClick}
+      >
+        {/* Image */}
+        <div className="relative aspect-square bg-gray-100 rounded-md overflow-hidden">
+          <ProductImage
+            src={imageUrl}
+            alt={product.name}
+            fill
+            className="object-cover group-hover:scale-105 transition-transform duration-300"
+            sizes="(max-width: 640px) 50vw, (max-width: 1024px) 50vw, 300px"
+            iconClassName="w-16 h-16"
+            fetchPriority={fetchPriority}
+          />
+          {onSale && (
+            <span className="absolute top-2 left-2 bg-red-500 text-white text-xs font-medium px-2 py-1 rounded">
+              {t("sale")}
             </span>
           )}
         </div>
 
-        {!product.purchasable && (
-          <span className="mt-2 text-sm text-gray-500">{t("outOfStock")}</span>
-        )}
-      </div>
-    </Link>
+        {/* Content */}
+        <div className="p-4">
+          <h3 className="text-sm font-medium text-gray-900 group-hover:text-primary transition-colors line-clamp-2">
+            {product.name}
+          </h3>
+
+          <div className="mt-2 flex items-center gap-2">
+            {displayPrice && (
+              <span className="text-lg font-semibold text-gray-900">
+                {displayPrice}
+              </span>
+            )}
+            {onSale && strikethroughPrice && (
+              <span className="text-sm text-gray-500 line-through">
+                {strikethroughPrice}
+              </span>
+            )}
+          </div>
+
+          {!product.purchasable && (
+            <span className="mt-2 text-sm text-gray-500">
+              {t("outOfStock")}
+            </span>
+          )}
+        </div>
+      </Link>
+
+      <WishlistButton
+        variantId={product.default_variant_id}
+        size="icon-sm"
+        showLabel={false}
+        className="absolute top-3 right-3 z-10 rounded-full bg-white/90 shadow-sm hover:bg-white"
+      />
+    </div>
   );
 });

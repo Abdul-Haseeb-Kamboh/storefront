@@ -9,6 +9,7 @@ import { ProductCustomFields } from "@/components/products/ProductCustomFields";
 import { VariantPicker } from "@/components/products/VariantPicker";
 import { Button } from "@/components/ui/button";
 import { QuantityPicker } from "@/components/ui/quantity-picker";
+import { WishlistButton } from "@/components/wishlist/WishlistButton";
 import { useCart } from "@/contexts/CartContext";
 import { useStore } from "@/contexts/StoreContext";
 import { trackAddToCart, trackViewItem } from "@/lib/analytics/gtm";
@@ -110,6 +111,11 @@ export function ProductDetails({ product, basePath }: ProductDetailsProps) {
     trackAddToCart(product, selectedVariant, quantity, currency);
   };
 
+  const selectedVariantId =
+    selectedVariant?.id ||
+    product.default_variant?.id ||
+    product.default_variant_id;
+
   return (
     <div className="container mx-auto px-4 sm:px-6 lg:px-8  py-8">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
@@ -202,6 +208,14 @@ export function ProductDetails({ product, basePath }: ProductDetailsProps) {
                   t("outOfStock")
                 )}
               </Button>
+
+              {selectedVariantId && (
+                <WishlistButton
+                  variantId={selectedVariantId}
+                  size="lg"
+                  className="min-w-55"
+                />
+              )}
             </div>
           </div>
 

@@ -37,7 +37,8 @@
     "viewAllCategory": "Voir tout dans {category}",
     "openSearch": "Ouvrir la recherche",
     "closeSearch": "Fermer la recherche",
-    "myAccount": "Mon compte"
+    "myAccount": "Mon compte",
+    "wishlist": "Liste d'envies"
   },
   "footer": {
     "description": "E-commerce open source basé sur Spree REST API, TypeScript SDK et Next.js. Auto-hébergé. Vos données. Zéro frais de plateforme.",
@@ -53,7 +54,8 @@
     "cart": "Panier",
     "policies": "Politiques",
     "poweredBy": "Propulse par",
-    "copyright": "\u00a9 {year} {storeName}. Propulse par Spree Commerce."
+    "copyright": "© {year} {storeName}. Propulse par Spree Commerce.",
+    "wishlist": "Liste d'envies"
   },
   "home": {
     "welcome": "{storeName} Storefront",
@@ -163,7 +165,7 @@
     "openImageZoom": "Ouvrir le zoom de l'image",
     "priceUnder": "Moins de {price}",
     "priceAbove": "{price}+",
-    "priceRangeBucket": "{min} \u2013 {max}",
+    "priceRangeBucket": "{min} – {max}",
     "properties": "Proprietes",
     "yes": "Oui",
     "no": "Non",
@@ -311,7 +313,9 @@
     "showPassword": "Afficher le mot de passe",
     "hidePassword": "Masquer le mot de passe",
     "forgotPassword": "Mot de passe oublie ?",
-    "policyConsentRequired": "Vous devez accepter les politiques du magasin pour creer un compte"
+    "policyConsentRequired": "Vous devez accepter les politiques du magasin pour creer un compte",
+    "wishlist": "Liste d'envies",
+    "wishlistDescription": "Gérez vos produits enregistrés"
   },
   "register": {
     "createAccount": "Creer un compte",
@@ -355,7 +359,7 @@
     "paymentInformation": "Informations de paiement",
     "cardEndingIn": "{label} se terminant par {digits}",
     "cardExpires": "Expire le {month}/{year}",
-    "storeCreditApplied": "{amount} applique \u2014 {remaining} restant",
+    "storeCreditApplied": "{amount} applique — {remaining} restant",
     "billingAddress": "Adresse de facturation",
     "orderNotFoundDescription": "La commande que vous recherchez n'existe pas.",
     "storeCredit": "Credit boutique",
@@ -377,7 +381,7 @@
     "notAvailable": "N/D",
     "unknownShipmentStatus": "Inconnu",
     "orderTitle": "Commande #{number}",
-    "shipmentCanceledRefund": "Expedition annulee \u2014 un remboursement a ete emis.",
+    "shipmentCanceledRefund": "Expedition annulee — un remboursement a ete emis.",
     "shippingMethodUnavailable": "Indisponible",
     "totalColumn": "Total"
   },
@@ -417,7 +421,7 @@
     "backToStore": "Retour a la boutique",
     "showOrderSummary": "Afficher le recapitulatif de la commande",
     "hideOrderSummary": "Masquer le recapitulatif de la commande",
-    "allRightsReserved": "\u00a9 {year} {storeName}. Tous droits reserves."
+    "allRightsReserved": "© {year} {storeName}. Tous droits reserves."
   },
   "profile": {
     "profile": "Profil",
@@ -524,5 +528,25 @@
     "shipping": "Livraison",
     "finalizingPayment": "Finalisation du paiement...",
     "or": "ou"
+  },
+  "wishlist": {
+    "myWishlist": "Ma liste d'envies",
+    "addToWishlist": "Ajouter à la liste d'envies",
+    "addedToWishlist": "Ajouté à la liste d'envies",
+    "removeFromWishlist": "Retirer de la liste d'envies",
+    "emptyTitle": "Votre liste d'envies est vide",
+    "emptyDescription": "Enregistrez les produits que vous aimez et retrouvez-les ici plus tard.",
+    "signInRequired": "Connectez-vous pour voir et gérer votre liste d'envies.",
+    "signInToView": "Se connecter pour voir la liste d'envies",
+    "failedToLoad": "Impossible de charger votre liste d'envies. Veuillez réessayer.",
+    "failedToAdd": "Impossible d'ajouter cet article à votre liste d'envies. Veuillez réessayer.",
+    "failedToRemove": "Impossible de retirer cet article de votre liste d'envies. Veuillez réessayer.",
+    "addToCart": "Ajouter au panier",
+    "addingToCart": "Ajout en cours...",
+    "remove": "Retirer",
+    "quantity": "Qté : {quantity}",
+    "refresh": "Actualiser",
+    "outlineHeart": "♡",
+    "filledHeart": "♥"
   }
 }

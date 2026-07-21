@@ -6,6 +6,7 @@ import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 import { CartButton } from "@/components/layout/CartButton";
 import { SearchToggle } from "@/components/layout/SearchToggle";
+import { WishlistNavButton } from "@/components/layout/WishlistNavButton";
 import { Button } from "@/components/ui/button";
 import { getStoreName } from "@/lib/store";
 
@@ -85,6 +86,9 @@ export async function Header({
               </Link>
             </Button>
           </div>
+
+          {/* Wishlist */}
+          <WishlistNavButton />
 
           {/* Cart */}
           <CartButton />

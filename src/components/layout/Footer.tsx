@@ -119,6 +119,14 @@ export async function Footer({
               </li>
               <li>
                 <Link
+                  href={`${basePath}/account/wishlist`}
+                  className="text-sm text-neutral-400 hover:text-neutral-200 transition-colors"
+                >
+                  {t("wishlist")}
+                </Link>
+              </li>
+              <li>
+                <Link
                   href={`${basePath}/cart`}
                   className="text-sm text-neutral-400 hover:text-neutral-200 transition-colors"
                 >

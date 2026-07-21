@@ -231,6 +231,13 @@ export function MobileMenu({ rootCategories, basePath }: MobileMenuProps) {
               >
                 {t("allProducts")}
               </Link>
+              <Link
+                href={`${basePath}/account/wishlist`}
+                onClick={() => setOpen(false)}
+                className={linkClass}
+              >
+                {t("wishlist")}
+              </Link>
               {rootCategories.map((category) =>
                 category.children && category.children.length > 0 ? (
                   <button
@@ -278,15 +285,25 @@ export function MobileMenu({ rootCategories, basePath }: MobileMenuProps) {
                 <ChevronRight className="w-4 h-4 text-gray-400 ml-auto" />
               </button>
 
-              <SheetClose asChild className="md:hidden">
-                <Link
-                  href={`${basePath}/account`}
-                  className="flex items-center justify-center gap-2 mx-4 mb-2 px-4 py-3 bg-black text-white rounded-lg text-base font-medium hover:bg-gray-800 transition-colors"
-                >
-                  <User className="size-5" />
-                  <span>{t("myAccount")}</span>
-                </Link>
-              </SheetClose>
+              <div className="md:hidden space-y-2 mx-4 mb-2">
+                <SheetClose asChild>
+                  <Link
+                    href={`${basePath}/account/wishlist`}
+                    className="flex items-center justify-center gap-2 px-4 py-3 border border-gray-300 text-gray-800 rounded-lg text-base font-medium hover:bg-gray-50 transition-colors"
+                  >
+                    <span>{t("wishlist")}</span>
+                  </Link>
+                </SheetClose>
+                <SheetClose asChild>
+                  <Link
+                    href={`${basePath}/account`}
+                    className="flex items-center justify-center gap-2 px-4 py-3 bg-black text-white rounded-lg text-base font-medium hover:bg-gray-800 transition-colors"
+                  >
+                    <User className="size-5" />
+                    <span>{t("myAccount")}</span>
+                  </Link>
+                </SheetClose>
+              </div>
             </SheetFooter>
           </div>
 
