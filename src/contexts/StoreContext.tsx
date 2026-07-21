@@ -40,7 +40,6 @@ function buildCountriesFromMarkets(markets: Market[]): CountryWithMarket[] {
     for (const country of market.countries ?? []) {
       if (seen.has(country.iso)) continue;
       seen.add(country.iso);
-
       result.push({
         ...country,
         currency: market.currency,
@@ -50,7 +49,7 @@ function buildCountriesFromMarkets(markets: Market[]): CountryWithMarket[] {
     }
   }
 
-  return result;
+  return result.sort((a, b) => a.name.localeCompare(b.name));
 }
 
 /** Find a country by ISO code in the flat countries list. */
