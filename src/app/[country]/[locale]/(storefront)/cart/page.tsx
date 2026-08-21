@@ -1,7 +1,7 @@
 "use client";
 
 import type { LineItem } from "@spree/sdk";
-import { ShoppingBag } from "lucide-react";
+import { IconShoppingBag } from "@tabler/icons-react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -70,9 +70,9 @@ export default function CartPage() {
     return (
       <div className="container mx-auto px-4 sm:px-6 lg:px-8  py-16">
         <div className="text-center">
-          <ShoppingBag
+          <IconShoppingBag
             className="w-24 h-24 text-gray-300 mx-auto"
-            strokeWidth={1}
+            stroke={1}
           />
           <h1 className="mt-4 text-2xl font-bold text-gray-900">
             {t("emptyCart")}

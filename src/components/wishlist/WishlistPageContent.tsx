@@ -1,7 +1,8 @@
 "use client";
 
 import type { Variant, WishlistItem } from "@spree/sdk";
-import { AlertCircle, Heart, Loader2, ShoppingBag, Trash2 } from "lucide-react";
+import { IconShoppingBagPlus } from "@tabler/icons-react";
+import { AlertCircle, Heart, Loader2, Trash2 } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
@@ -260,7 +261,7 @@ export function WishlistPageContent() {
                       </>
                     ) : (
                       <>
-                        <ShoppingBag className="h-4 w-4" />
+                        <IconShoppingBagPlus className="h-4 w-4" />
                         {t("addToCart")}
                       </>
                     )}

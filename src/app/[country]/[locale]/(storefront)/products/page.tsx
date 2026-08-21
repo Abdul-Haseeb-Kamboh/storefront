@@ -41,20 +41,19 @@ export default async function ProductsPage({
   const listId = query ? "search-results" : "all-products";
   const listName = query ? "Search Results" : "All Products";
 
+  const titleNode = (
+    <h1 className="text-foreground text-start text-3xl font-bold">
+      {query ? t("searchResultsFor", { query }) : t("allProducts")}
+    </h1>
+  );
+
   return (
     <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <div className="mb-8">
-        {query ? (
-          <h1 className="text-3xl font-bold text-gray-900">
-            {t("searchResultsFor", { query })}
-          </h1>
-        ) : (
-          <>
-            <h1 className="text-3xl font-bold text-gray-900">
-              {t("allProducts")}
-            </h1>
-            <p className="mt-2 text-gray-500">{t("browseCollection")}</p>
-          </>
+      {/* lg+ shows the title inline with the product count + sort inside ProductListing */}
+      <div className="mb-8 lg:hidden">
+        {titleNode}
+        {!query && (
+          <p className="mt-2 text-muted-foreground">{t("browseCollection")}</p>
         )}
       </div>
 
@@ -70,6 +69,7 @@ export default async function ProductsPage({
         emptyMessage={
           query ? t("noMatchingProducts", { query }) : t("tryAdjustingFilters")
         }
+        title={titleNode}
       />
     </div>
   );

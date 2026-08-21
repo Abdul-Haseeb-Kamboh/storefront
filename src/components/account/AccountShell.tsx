@@ -1,6 +1,6 @@
 "use client";
 
-import type { LucideIcon } from "lucide-react";
+import { IconShoppingBagPlus } from "@tabler/icons-react";
 import {
   CreditCard,
   Gift,
@@ -8,7 +8,6 @@ import {
   Home,
   LogOut,
   MapPin,
-  ShoppingBag,
   User,
 } from "lucide-react";
 import Link from "next/link";
@@ -21,11 +20,11 @@ import { extractBasePath } from "@/lib/utils/path";
 function getNavItems(t: ReturnType<typeof useTranslations<"account">>): {
   href: string;
   label: string;
-  icon: LucideIcon;
+  icon: React.ComponentType<{ className?: string }>;
 }[] {
   return [
     { href: "/account", label: t("overview"), icon: Home },
-    { href: "/account/orders", label: t("orders"), icon: ShoppingBag },
+    { href: "/account/orders", label: t("orders"), icon: IconShoppingBagPlus },
     { href: "/account/wishlist", label: t("wishlist"), icon: Heart },
     { href: "/account/addresses", label: t("addresses"), icon: MapPin },
     {

@@ -1,7 +1,8 @@
 "use client";
 
 import type { Media, Product, Variant } from "@spree/sdk";
-import { CircleCheckBig, CircleX, Loader2, ShoppingBag } from "lucide-react";
+import { IconShoppingBagPlus } from "@tabler/icons-react";
+import { CircleCheckBig, CircleX, Loader2 } from "lucide-react";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { useEffect, useMemo, useState } from "react";
@@ -127,7 +128,7 @@ export function ProductDetails({ product, basePath }: ProductDetailsProps) {
     product.default_variant_id;
 
   return (
-    <div className="container mx-auto px-4 sm:px-6 lg:px-8  py-8">
+    <div className="container mx-auto px-4 sm:px-2  py-8">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
         {/* Media Gallery */}
         <div>
@@ -230,7 +231,7 @@ export function ProductDetails({ product, basePath }: ProductDetailsProps) {
                     </>
                   ) : isPurchasable ? (
                     <>
-                      <ShoppingBag className="w-5 h-5" />
+                      <IconShoppingBagPlus className="w-5 h-5" />
                       {t("addToCart")}
                     </>
                   ) : (

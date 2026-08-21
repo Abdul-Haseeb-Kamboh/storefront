@@ -7,6 +7,7 @@ import {
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { cn } from "@/lib/utils";
 
 interface FilterDropdownProps {
   label: string;
@@ -16,6 +17,7 @@ interface FilterDropdownProps {
   onClose: () => void;
   children: React.ReactNode;
   align?: "left" | "right";
+  triggerClassName?: string;
 }
 
 export function FilterDropdown({
@@ -26,6 +28,7 @@ export function FilterDropdown({
   onClose,
   children,
   align = "left",
+  triggerClassName,
 }: FilterDropdownProps) {
   const hasActive = badgeCount !== undefined && badgeCount > 0;
 
@@ -43,10 +46,11 @@ export function FilterDropdown({
           aria-expanded={isOpen}
           aria-haspopup="menu"
           size="sm"
+          className={cn("rounded-full", triggerClassName)}
         >
           <span>{label}</span>
           {hasActive && (
-            <span className="flex items-center justify-center w-5 h-5 text-xs bg-primary text-white rounded-lg">
+            <span className="flex items-center justify-center w-5 h-5 text-xs bg-primary text-primary-foreground rounded-full">
               {badgeCount}
             </span>
           )}

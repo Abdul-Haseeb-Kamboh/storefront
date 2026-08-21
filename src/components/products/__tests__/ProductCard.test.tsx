@@ -1,7 +1,9 @@
 import type { Product } from "@spree/sdk";
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 import { ProductCard } from "@/components/products/ProductCard";
+
+const mockAddItem = vi.fn();
 
 vi.mock("next-intl", () => ({
   useTranslations: () => (key: string) => key,
@@ -15,12 +17,17 @@ vi.mock("@/contexts/StoreContext", () => ({
   useStore: () => ({ currency: "USD", locale: "en", loading: false }),
 }));
 
+vi.mock("@/contexts/CartContext", () => ({
+  useCart: () => ({ addItem: mockAddItem, updating: false }),
+}));
+
 // Minimal product fixtures — cast to Product for component props
 const baseProduct = {
   id: "prod-1",
   name: "Classic T-Shirt",
   slug: "classic-t-shirt",
   purchasable: true,
+  default_variant_id: "variant-master",
   thumbnail_url: "https://example.com/shirt.jpg",
   price: {
     display_amount: "$25.00",
@@ -39,6 +46,7 @@ const saleProduct = {
   name: "Sale T-Shirt",
   slug: "sale-t-shirt",
   purchasable: true,
+  default_variant_id: "variant-sale",
   thumbnail_url: "https://example.com/shirt.jpg",
   price: {
     display_amount: "$15.00",
@@ -57,6 +65,7 @@ const outOfStockProduct = {
   name: "Sold Out Item",
   slug: "sold-out-item",
   purchasable: false,
+  default_variant_id: "variant-sold-out",
   thumbnail_url: "https://example.com/shirt.jpg",
   price: {
     display_amount: "$25.00",
@@ -75,6 +84,7 @@ const noImageProduct = {
   name: "No Image Product",
   slug: "no-image",
   purchasable: true,
+  default_variant_id: "variant-no-image",
   thumbnail_url: null,
   price: {
     display_amount: "$25.00",
@@ -88,7 +98,66 @@ const noImageProduct = {
   },
 } as unknown as Product;
 
+const noPriceProduct = {
+  id: "prod-5",
+  name: "Members Product",
+  slug: "members-product",
+  purchasable: true,
+  default_variant_id: "variant-members",
+  thumbnail_url: "https://example.com/shirt.jpg",
+  price: null,
+  original_price: null,
+} as unknown as Product;
+
 describe("ProductCard", () => {
+  it("shows loading state only on the clicked quick add button", () => {
+    let resolveAdd: (() => void) | undefined;
+    const pendingAdd = new Promise<void>((resolve) => {
+      resolveAdd = resolve;
+    });
+    mockAddItem.mockImplementationOnce(() => pendingAdd);
+
+    render(
+      <>
+        <ProductCard product={baseProduct} basePath="/us/en" />
+        <ProductCard product={saleProduct} basePath="/us/en" />
+      </>,
+    );
+
+    const [firstButton, secondButton] = screen.getAllByRole("button", {
+      name: "addToCart",
+    });
+    fireEvent.click(firstButton);
+
+    expect(firstButton).toHaveAttribute("aria-label", "adding");
+    expect(secondButton).toHaveAttribute("aria-label", "addToCart");
+
+    resolveAdd?.();
+  });
+
+  it("shows quick add button for purchasable products", () => {
+    render(<ProductCard product={baseProduct} basePath="/us/en" />);
+
+    expect(
+      screen.getByRole("button", { name: "addToCart" }),
+    ).toBeInTheDocument();
+  });
+
+  it("does not show quick add button when price is hidden", () => {
+    render(<ProductCard product={noPriceProduct} basePath="/us/en" />);
+
+    expect(
+      screen.queryByRole("button", { name: "addToCart" }),
+    ).not.toBeInTheDocument();
+  });
+
+  it("adds default variant to cart from quick add button", async () => {
+    render(<ProductCard product={baseProduct} basePath="/us/en" />);
+
+    fireEvent.click(screen.getByRole("button", { name: "addToCart" }));
+    expect(mockAddItem).toHaveBeenCalledWith("variant-master", 1);
+  });
+
   it("renders product name and price", () => {
     render(<ProductCard product={baseProduct} basePath="/us/en" />);
 
@@ -128,6 +197,9 @@ describe("ProductCard", () => {
     render(<ProductCard product={outOfStockProduct} basePath="/us/en" />);
 
     expect(screen.getByText("outOfStock")).toBeInTheDocument();
+    expect(
+      screen.queryByRole("button", { name: "addToCart" }),
+    ).not.toBeInTheDocument();
   });
 
   it("renders image when thumbnail_url is provided", () => {

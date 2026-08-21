@@ -11,6 +11,8 @@ interface ListingFilterBarProps {
   filtersData: ProductFiltersResponse | null;
   activeFilters: ActiveFilters;
   totalCount: number;
+  title?: React.ReactNode;
+  children?: React.ReactNode;
 }
 
 /**
@@ -22,6 +24,8 @@ export function ListingFilterBar({
   filtersData,
   activeFilters,
   totalCount,
+  title,
+  children,
 }: ListingFilterBarProps) {
   const router = useRouter();
   const pathname = usePathname();
@@ -55,7 +59,10 @@ export function ListingFilterBar({
         activeFilters={activeFilters}
         totalCount={totalCount}
         onFilterChange={handleFilterChange}
-      />
+        title={title}
+      >
+        {children}
+      </FilterBar>
     </div>
   );
 }

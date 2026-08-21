@@ -34,7 +34,7 @@ export async function FeaturedProductsSection({
   });
 
   return (
-    <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 featured-products">
+    <section className="container mx-auto py-16 featured-products">
       <div className="flex items-center justify-between mb-8">
         <h2 className="text-2xl font-bold text-gray-900">
           {t("featuredProducts")}

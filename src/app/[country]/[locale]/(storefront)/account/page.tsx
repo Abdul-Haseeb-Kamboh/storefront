@@ -1,5 +1,6 @@
 "use client";
 
+import { IconShoppingBagPlus } from "@tabler/icons-react";
 import {
   CircleAlert,
   CreditCard,
@@ -7,7 +8,6 @@ import {
   EyeOff,
   Heart,
   MapPin,
-  ShoppingBag,
   User,
 } from "lucide-react";
 import Link from "next/link";
@@ -199,7 +199,7 @@ export default function AccountPage() {
             <Card className="hover:border-gray-300 transition-colors h-full">
               <CardContent className="flex items-center gap-4 py-0">
                 <div className="p-3 bg-gray-100 rounded-xl">
-                  <ShoppingBag className="w-6 h-6 text-primary" />
+                  <IconShoppingBagPlus className="w-6 h-6 text-primary" />
                 </div>
                 <div>
                   <h2 className="text-lg font-medium text-gray-900">

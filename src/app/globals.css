@@ -17,6 +17,7 @@
   --animate-hamburger-mid-close: hamburger-mid-close 0.15s ease-in-out forwards;
   --animate-hamburger-bottom-open: hamburger-bottom-open 0.35s ease-in-out forwards;
   --animate-hamburger-bottom-close: hamburger-bottom-close 0.35s ease-in-out forwards;
+  --animate-marquee: marquee 22s linear infinite;
 
   --color-primary-50: #eff6ff;
   --color-primary-100: #dbeafe;
@@ -114,6 +115,10 @@
   50% { transform: translateY(-7px) rotate(0); }
   100% { transform: translateY(0) rotate(0); }
 }
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
 
 body {
   font-family: var(--font-geist), system-ui, sans-serif;
@@ -178,7 +183,7 @@ input[type="search"]::-webkit-search-cancel-button {
 }
 
 :root {
-  --background: oklch(1 0 0);
+  --background: oklch(97.49% 0.00261 230.432);
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);

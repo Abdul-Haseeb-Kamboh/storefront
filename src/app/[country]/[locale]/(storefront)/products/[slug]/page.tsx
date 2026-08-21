@@ -72,7 +72,7 @@ export default async function ProductPage({
   );
 
   return (
-    <>
+    <div className="max-w-347.5 mx-auto">
       {canonicalUrl && (
         <JsonLd data={buildProductJsonLd(product, canonicalUrl)} />
       )}
@@ -84,7 +84,8 @@ export default async function ProductPage({
           })}
         />
       )}
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+      {/* relative container max-w-347.5 mx-auto z-0 px-0 md:px-0 my-5 */}
+      <div className="container mx-auto px-4 sm:px-2 pt-6">
         {breadcrumbCategory && (
           <Breadcrumbs
             category={breadcrumbCategory}
@@ -95,6 +96,6 @@ export default async function ProductPage({
         )}
       </div>
       <ProductDetails product={product} basePath={basePath} />
-    </>
+    </div>
   );
 }

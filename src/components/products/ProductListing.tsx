@@ -47,6 +47,8 @@ interface ProductListingProps {
   ) => Promise<ProductFiltersResponse>;
   /** Shown when the fetch returns zero results. */
   emptyMessage?: string;
+  /** Page title, shown alongside the product count on lg+ screens. */
+  title?: React.ReactNode;
 }
 
 /**
@@ -92,6 +94,7 @@ async function ProductListingInner({
   fetchProducts,
   fetchFilters,
   emptyMessage,
+  title,
 }: ProductListingProps): Promise<ReactElement> {
   const t = await getTranslations({ locale, namespace: "products" });
 
@@ -143,13 +146,12 @@ async function ProductListingInner({
   const hasResults = products.length > 0;
 
   return (
-    <>
-      <ListingFilterBar
-        filtersData={filtersResponse}
-        activeFilters={state.filters}
-        totalCount={totalCount}
-      />
-
+    <ListingFilterBar
+      filtersData={filtersResponse}
+      activeFilters={state.filters}
+      totalCount={totalCount}
+      title={title}
+    >
       {hasResults ? (
         <>
           <InfiniteProductList
@@ -195,6 +197,6 @@ async function ProductListingInner({
           </p>
         </div>
       )}
-    </>
+    </ListingFilterBar>
   );
 }

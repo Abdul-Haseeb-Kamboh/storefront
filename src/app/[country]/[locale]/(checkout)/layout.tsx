@@ -1,6 +1,7 @@
 "use client";
 
-import { ArrowLeft, ChevronDown, ShoppingBag } from "lucide-react";
+import { IconShoppingBagPlus } from "@tabler/icons-react";
+import { ArrowLeft, ChevronDown } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -91,7 +92,7 @@ function MobileSummaryToggle() {
         aria-controls="checkout-summary-panel"
       >
         <span className="flex items-center gap-2 text-sm font-medium text-gray-900">
-          <ShoppingBag className="w-5 h-5 text-gray-600" />
+          <IconShoppingBagPlus className="w-5 h-5 text-gray-600" />
           {isOpen ? t("hideOrderSummary") : t("showOrderSummary")}
         </span>
         <ChevronDown

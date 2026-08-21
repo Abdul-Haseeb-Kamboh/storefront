@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { Breadcrumbs } from "@/components/navigation/Breadcrumbs";
 import { ProductListing } from "@/components/products/ProductListing";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { getCategory, getCategoryProducts } from "@/lib/data/categories";
@@ -61,27 +62,32 @@ export default async function CategoryPage({
   const fetchCategoryProducts = getCategoryProducts.bind(null, category.id);
 
   return (
-    <div>
+    <div className="max-w-350 mx-auto px-4 md:px-8 py-12">
       {storeUrl && (
         <JsonLd data={buildBreadcrumbJsonLd(category, basePath, storeUrl)} />
       )}
 
-      <CategoryBanner category={category} basePath={basePath} locale={locale} />
+      <Breadcrumbs category={category} basePath={basePath} locale={locale} />
 
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-4">
-        <ProductListing
-          state={listingState}
-          basePath={basePath}
-          currency={currency}
-          locale={locale as Locale}
-          listId={`category-${category.id}`}
-          listName={`Category: ${category.name}`}
-          categoryId={category.id}
-          baseParams={{ in_category: category.id }}
-          fetchProducts={fetchCategoryProducts}
-          fetchFilters={getProductFilters}
-        />
-      </div>
+      <CategoryBanner category={category} basePath={basePath} />
+
+      <ProductListing
+        state={listingState}
+        basePath={basePath}
+        currency={currency}
+        locale={locale as Locale}
+        listId={`category-${category.id}`}
+        listName={`Category: ${category.name}`}
+        categoryId={category.id}
+        baseParams={{ in_category: category.id }}
+        fetchProducts={fetchCategoryProducts}
+        fetchFilters={getProductFilters}
+        title={
+          <h1 className="text-3xl font-bold text-foreground">
+            {category.name}
+          </h1>
+        }
+      />
     </div>
   );
 }

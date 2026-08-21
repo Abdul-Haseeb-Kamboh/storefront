@@ -1,69 +1,64 @@
 import type { Category } from "@spree/sdk";
 import { cacheLife, cacheTag } from "next/cache";
 import Link from "next/link";
-import { Breadcrumbs } from "@/components/navigation/Breadcrumbs";
 
 interface CategoryBannerProps {
   category: Category;
   basePath: string;
-  locale: string;
 }
 
 export async function CategoryBanner({
   category,
   basePath,
-  locale,
 }: CategoryBannerProps) {
   "use cache: remote";
   cacheLife("minutes");
   cacheTag("category-banner");
 
   return (
-    <>
+    <section className="relative overflow-hidden rounded-3xl bg-card mb-9">
       <div
-        className="flex flex-col justify-end min-h-[350px] bg-gray-50 bg-cover bg-center"
+        className="relative flex min-h-55 flex-col justify-end bg-muted bg-cover bg-center sm:min-h-70"
         style={
           category.image_url
             ? { backgroundImage: `url(${category.image_url})` }
             : undefined
         }
       >
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <Breadcrumbs
-            category={category}
-            basePath={basePath}
-            locale={locale}
-          />
-
-          <div className="mb-4">
-            <h1 className="text-4xl font-bold text-gray-900">
-              {category.name}
-            </h1>
-          </div>
-
-          {/* Description */}
+        {category.image_url && (
+          <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/30 to-transparent" />
+        )}
+        <div
+          className={`relative flex max-w-md flex-col gap-2 p-6 sm:p-10 ${
+            category.image_url ? "text-white" : "text-foreground"
+          }`}
+        >
+          <h1 className="text-2xl font-semibold leading-tight sm:text-3xl">
+            {category.name}
+          </h1>
           {category.description && (
-            <p className="mb-4 text-gray-600">{category.description}</p>
+            <p
+              className={`text-sm leading-relaxed ${category.image_url ? "text-white/75" : "text-muted-foreground"}`}
+            >
+              {category.description}
+            </p>
           )}
         </div>
       </div>
 
-      {/* Subcategories */}
       {category.children && category.children.length > 0 && (
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 mt-4">
-          <div className="flex flex-wrap gap-2 items-center border-b border-gray-100 pb-4">
-            {category.children.map((child) => (
-              <Link
-                key={child.id}
-                href={`${basePath}/c/${child.permalink}`}
-                className="px-1.5 py-1 hover:bg-gray-100 rounded-lg text-gray-700 transition-colors"
-              >
-                {child.name}
-              </Link>
-            ))}
-          </div>
+        <div className="flex flex-wrap gap-2 border-t border-border px-4 py-3 sm:px-6">
+          {category.children.map((child) => (
+            <Link
+              key={child.id}
+              href={`${basePath}/c/${child.permalink}`}
+              className="rounded-full px-3 py-1.5 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+            >
+              {child.name}
+            </Link>
+          ))}
         </div>
       )}
-    </>
+    </section>
   );
 }

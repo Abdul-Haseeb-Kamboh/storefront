@@ -48,7 +48,8 @@ export function SearchToggle({
   }, []);
 
   return (
-    <header className="sticky top-0 z-50 bg-white border-b border-gray-200 h-16 relative">
+    // relative z-[60] mx-auto w-full max-w-[1390px] rounded-b-2xl bg-[var(--surface-elevated)] [--text-muted:rgb(58,58,58)] dark:[--text-muted:var(--neutralLight)]
+    <header className="sticky top-0 z-50 bg-white border-b border-gray-200 h-16 max-w-347.5 mx-auto w-full rounded-b-2xl ">
       {/* Normal header content */}
       <div
         className={`absolute inset-0 transition-all duration-300 ease-in-out ${
