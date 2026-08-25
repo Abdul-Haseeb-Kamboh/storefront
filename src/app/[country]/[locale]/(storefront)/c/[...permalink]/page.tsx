@@ -62,7 +62,7 @@ export default async function CategoryPage({
   const fetchCategoryProducts = getCategoryProducts.bind(null, category.id);
 
   return (
-    <div className="max-w-350 mx-auto px-4 md:px-8 py-12">
+    <div className="max-w-350 mx-auto px-0 py-12">
       {storeUrl && (
         <JsonLd data={buildBreadcrumbJsonLd(category, basePath, storeUrl)} />
       )}
